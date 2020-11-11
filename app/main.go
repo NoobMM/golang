@@ -33,7 +33,7 @@ func startApp(_ *cobra.Command, _ []string) {
 	//connectors.RunMigration()
 
 	db := connectors.ConnectPostgresDB(false)
-	log.Println("starting server...")
+	log.Println("starting server....")
 
 	// Repos
 	healthCheckRepo := healthcheckrepo.New(db)
