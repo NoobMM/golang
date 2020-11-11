@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  golang-with-heroku:
+    build:
+      context: ../..
+      dockerfile: Dockerfile-Prod
+      target: ""
+    depends_on:
+      - postgres
+    entrypoint: ["sh", "-c", "/app/server.bin", "migrate"]

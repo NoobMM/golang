@@ -1,0 +1,52 @@
+version: "3.4"
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:12.2
+    restart: always
+    command: [ "postgres", "-c", "log_statement=all" ]
+    volumes:
+      - ./postgres/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - ./postgres/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypass
+      POSTGRES_DB: golang_with_heroku_db
+
+  golang-with-heroku:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+      target: development
+    container_name: golang-with-heroku
+    volumes:
+      - ../..:/go/src/github.com/deuanz/golang-with-heroku
+      - $GOPATH/pkg/mod:/go/pkg/mod # to avoid re-"go mod download" on every build
+    ports:
+      - "8001:8001"
+    environment:
+      ENVIRONMENT: "local"
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypass
+      POSTGRES_DB: golang_with_heroku_db
+      DEV_MODE: "true"
+      BASE_URL: "http://localhost"
+
+
+#  postgres-adminer:
+#    image: adminer:4.7.7
+#    container_name: adminer
+#    restart: always
+#    ports:
+#      - "8080:8080"
+#    logging:
+#      driver: none
+#    depends_on:
+#      - postgres

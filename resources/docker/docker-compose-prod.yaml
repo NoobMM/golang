@@ -1,0 +1,42 @@
+version: "3.4"
+
+services:
+  golang_with_heroku_db:
+    container_name: postgres
+    image: postgres:12-alpine
+    restart: on-failure:10
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypass
+      POSTGRES_DB: golang_with_heroku_db
+  wait:
+    image: martin/wait
+    depends_on:
+      - golang_with_heroku_db
+    command: "-c golang_with_heroku_db:5432"
+  migrate:
+    image: migrate/migrate
+    volumes:
+      - ../../app/migrations:/migrations
+    command: ["-path", "/migrations", "-database",  "postgres://postgres:mypass@golang_with_heroku_db:5432/golang_with_heroku_db?sslmode=disable", "up"]
+    depends_on:
+      - golang_with_heroku_db
+  golang-with-heroku:
+    build:
+      context: ../..
+      dockerfile: Dockerfile-Prod
+    container_name: golang-with-heroku
+    restart: on-failure:10
+    ports:
+      - "4500:8001"
+    depends_on:
+      - wait
+      - golang_with_heroku_db
+    command: >-
+      sh -c "
+        /app/server.bin migrate &&
+        /app/server.bin"
