@@ -2,6 +2,7 @@ module github.com/deuanz/golang-with-heroku
 
 go 1.15
 
+// +heroku goVersion go1.15
 require (
 	github.com/AlekSi/pointer v1.1.0
 	github.com/filipemendespi/newrelic-context v0.0.0-20200414012421-889cae3d7978
@@ -15,5 +16,4 @@ require (
 	github.com/stoewer/go-strcase v1.2.0
 	github.com/stretchr/testify v1.6.1
 	go.uber.org/zap v1.16.0
-	golang.org/x/crypto v0.0.0-20201016220609-9e8e0b390897
 )
