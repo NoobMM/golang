@@ -15,7 +15,7 @@ type CreateWalletUseCaseInput struct {
 	Name *string
 }
 
-func (useCase *useCase) CreateWalletUseCase(ctx context.Context, input CreateWalletUseCaseInput) (*entities.Wallet, error) {
+func (uc *useCase) CreateWalletUseCase(ctx context.Context, input CreateWalletUseCaseInput) (*entities.Wallet, error) {
 	if input.Name == nil || *input.Name == "" {
 		return nil, xerrors.ParameterError{
 			Code: constants.StatusCodeMissingRequiredParameters,
@@ -23,7 +23,7 @@ func (useCase *useCase) CreateWalletUseCase(ctx context.Context, input CreateWal
 		}
 	}
 	newWallet := entities.NewWallet(input.Name)
-	created, err := useCase.WalletRepo.CreateOneWallet(ctx, walletrepo.CreateOneWalletInput{
+	created, err := uc.WalletRepo.CreateOneWallet(ctx, walletrepo.CreateOneWalletInput{
 		WalletEntity: newWallet,
 	})
 	if err != nil {

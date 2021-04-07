@@ -1,12 +1,15 @@
 package walletusecase
 
 import (
+	"context"
+
 	"github.com/NoobMM/golang/app/domain/entities"
-	walletrepo "github.com/NoobMM/golang/app/intrastructure/repos/wallet")
+	walletrepo "github.com/NoobMM/golang/app/intrastructure/repos/wallet"
+)
 
 
 type UseCase interface {
-	CreateWallet(ctx context.Context, input CreateWalletUseCaseInput) (*entities.Wallet, error)
+	CreateWalletUseCase(ctx context.Context, input CreateWalletUseCaseInput) (*entities.Wallet, error)
 }
 
 type useCase struct {
