@@ -19,7 +19,7 @@ RUN apk update && \
     apk add linux-headers
 
 # Set working directory
-WORKDIR /go/src/github.com/deuanz/golang-with-heroku
+WORKDIR /go/src/github.com/NoobMM/golang
 
 # Install Fresh for local development
 RUN go get github.com/pilu/fresh
@@ -55,10 +55,10 @@ FROM golang:1.15.4-alpine AS build
 ENV GO111MODULE=on
 
 # Set working directory
-WORKDIR /go/src/github.com/deuanz/golang-with-heroku
+WORKDIR /go/src/github.com/NoobMM/golang
 
 # Copy stuff from development stage
-COPY --from=development /go/src/github.com/deuanz/golang-with-heroku .
+COPY --from=development /go/src/github.com/NoobMM/golang .
 
 # Update OS package and install Git
 RUN apk update && apk add git mercurial bzr && apk add build-base
@@ -81,7 +81,7 @@ WORKDIR /app
 COPY --from=build /go/bin/server.bin /app/server.bin
 
 # Copy SQL stuff
-COPY --from=development /go/src/github.com/deuanz/golang-with-heroku/app/migrations /app/migrations
+COPY --from=development /go/src/github.com/NoobMM/golang/app/migrations /app/migrations
 
 # Set Docker's entry point commands
 RUN chown -R appuser:appgroup /app

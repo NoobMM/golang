@@ -1,4 +1,4 @@
-PKG := github.com/deuanz/golang-with-heroku
+PKG := github.com/NoobMM/golang
 PKG_LIST := $(shell go list ${PKG}/... | grep -v /vendor/)
 GOLINT?=		go run golang.org/x/lint/golint
 

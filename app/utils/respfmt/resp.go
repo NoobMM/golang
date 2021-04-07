@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/deuanz/golang-with-heroku/app/constants"
-	"github.com/deuanz/golang-with-heroku/app/utils/xerrors"
+	"github.com/NoobMM/golang/app/constants"
+	"github.com/NoobMM/golang/app/utils/xerrors"
 	"github.com/gin-gonic/gin"
 )
 

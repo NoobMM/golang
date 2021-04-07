@@ -1,15 +1,16 @@
 package respfmt_test
 
 import (
-	"github.com/AlekSi/pointer"
-	"github.com/deuanz/golang-with-heroku/app/environments"
-	"github.com/deuanz/golang-with-heroku/app/testutils"
-	"github.com/deuanz/golang-with-heroku/app/utils/respfmt"
-	"github.com/gin-gonic/gin"
-	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/url"
 	"testing"
+
+	"github.com/AlekSi/pointer"
+	"github.com/NoobMM/golang/app/environments"
+	"github.com/NoobMM/golang/app/testutils"
+	"github.com/NoobMM/golang/app/utils/respfmt"
+	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestPagination_New(t *testing.T) {

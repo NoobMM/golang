@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/deuanz/golang-with-heroku/app/constants"
+	"github.com/NoobMM/golang/app/constants"
 	"github.com/go-playground/validator/v10"
 	"github.com/stoewer/go-strcase"
 )

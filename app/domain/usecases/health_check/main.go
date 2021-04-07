@@ -2,7 +2,8 @@ package healthcheckusecase
 
 import (
 	"context"
-	healthcheckrepo "github.com/deuanz/golang-with-heroku/app/domain/repos/health_check"
+
+	healthcheckrepo "github.com/NoobMM/golang/app/domain/repos/health_check"
 )
 
 // UseCase is a interface for healthcheckusecase

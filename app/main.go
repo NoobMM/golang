@@ -2,16 +2,18 @@ package main
 
 import (
 	"fmt"
-	healthcheckhttp "github.com/deuanz/golang-with-heroku/app/domain/deliveries/http/health_check"
-	"github.com/deuanz/golang-with-heroku/app/domain/interfaces/connectors"
-	healthcheckrepo "github.com/deuanz/golang-with-heroku/app/domain/repos/health_check"
-	healthcheckusecase "github.com/deuanz/golang-with-heroku/app/domain/usecases/health_check"
-	"github.com/deuanz/golang-with-heroku/app/environments"
-	"github.com/deuanz/golang-with-heroku/app/routes"
-	"github.com/gin-gonic/gin"
-	"github.com/spf13/cobra"
 	"log"
 	"os"
+
+	healthcheckhttp "github.com/NoobMM/golang/app/domain/deliveries/http/health_check"
+	"github.com/NoobMM/golang/app/domain/interfaces/connectors"
+	healthcheckrepo "github.com/NoobMM/golang/app/domain/repos/health_check"
+	healthcheckusecase "github.com/NoobMM/golang/app/domain/usecases/health_check"
+	"github.com/NoobMM/golang/app/environments"
+	"github.com/NoobMM/golang/app/migration"
+	"github.com/NoobMM/golang/app/routes"
+	"github.com/gin-gonic/gin"
+	"github.com/spf13/cobra"
 )
 
 func main() {
@@ -29,8 +31,13 @@ func main() {
 func startApp(_ *cobra.Command, _ []string) {
 	environments.Init()
 
-	//log.Printf("MIGRATE APP...")
-	//connectors.RunMigration()
+	log.Printf("MIGRATE APP...")
+	err := migration.Migrate()
+	if err != nil {
+		log.Printf("migration failed %s",err.Error())
+		return 
+	}
+	log.Println("migration success")
 
 	db := connectors.ConnectPostgresDB(false)
 	log.Println("starting server...")

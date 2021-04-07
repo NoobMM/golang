@@ -1,7 +1,7 @@
 package routes
 
 import (
-	healthcheckhttp "github.com/deuanz/golang-with-heroku/app/domain/deliveries/http/health_check"
+	healthcheckhttp "github.com/NoobMM/golang/app/domain/deliveries/http/health_check"
 	"github.com/gin-gonic/gin"
 )
 

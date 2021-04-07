@@ -1,7 +1,7 @@
 package healthcheckhttp
 
 import (
-	healthcheckusecase "github.com/deuanz/golang-with-heroku/app/domain/usecases/health_check"
+	healthcheckusecase "github.com/NoobMM/golang/app/domain/usecases/health_check"
 	"github.com/gin-gonic/gin"
 )
 

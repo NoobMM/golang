@@ -25,7 +25,7 @@ services:
       target: development
     container_name: golang-with-heroku
     volumes:
-      - ../..:/go/src/github.com/deuanz/golang-with-heroku
+      - ../..:/go/src/github.com/NoobMM/golang
       - $GOPATH/pkg/mod:/go/pkg/mod # to avoid re-"go mod download" on every build
     ports:
       - "8001:8001"

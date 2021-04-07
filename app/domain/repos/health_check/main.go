@@ -2,7 +2,7 @@ package healthcheckrepo
 
 import (
 	"context"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 // Repo is an interface for HealthCheck repository

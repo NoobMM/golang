@@ -1,10 +1,11 @@
 package respfmt
 
 import (
-	"github.com/AlekSi/pointer"
-	"github.com/deuanz/golang-with-heroku/app/environments"
-	"github.com/gin-gonic/gin"
 	"strconv"
+
+	"github.com/AlekSi/pointer"
+	"github.com/NoobMM/golang/app/environments"
+	"github.com/gin-gonic/gin"
 )
 
 // Pagination is a response model that define how pagination should look like

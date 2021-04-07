@@ -1,7 +1,7 @@
 package healthcheckhttp
 
 import (
-	"github.com/deuanz/golang-with-heroku/app/utils/respfmt"
+	"github.com/NoobMM/golang/app/utils/respfmt"
 	"github.com/gin-gonic/gin"
 )
 
