@@ -8,11 +8,11 @@ import (
 )
 
 type CreateOneWalletInput struct {
-	walletEntity *entities.Wallet
+	WalletEntity *entities.Wallet
 }
 
 func (repo *repo) CreateOneWallet(ctx context.Context, input CreateOneWalletInput) (*entities.Wallet, error) {
-	walletModel, err := new(models.Wallet).FormEntity(input.walletEntity)
+	walletModel, err := new(models.Wallet).FormEntity(input.WalletEntity)
 	if err != nil {
 		return nil, err
 	}
