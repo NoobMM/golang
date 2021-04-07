@@ -6,39 +6,38 @@ import (
 )
 
 var migrate20210407121200Up = []string{
-	`CRAETE EXTENSION "uuid_ossp"`,
-	`CRAETE TABLE "wallets" (
-		id		uuid PRIMARY KEY NOT NULL DEFAULT generate_uuid_v4(),
+	`CREATE TABLE "wallets" (
+		id		uuid NOT NULL DEFAULT uuid_generate_v4(),
 		name	varchar	NOT NULL,
-		balance	bigint	NOT NULL
+		balance	bigint	NOT NULL,
+		PRIMARY KEY (id)
 	)`,
 }
 
 var migrate20210407121200Down = []string{
 	`DROP TABLE "wallets"`,
-	`DROP EXTENSION "uuid_ossp"`,
 }
 
 func migrate20210407121200() *gormigrate.Migration {
 	return &gormigrate.Migration{
-	ID: "20210107121200",
+		ID: "20210107121200",
 		Migrate: func(db *gorm.DB) error {
 			for _, sql := range migrate20210407121200Up {
 				err := db.Exec(sql).Error
-				if err != nil{
+				if err != nil {
 					return err
 				}
 			}
 			return nil
-			},
-			Rollback: func(db *gorm.DB) error {
-				for _, sql := range migrate20210407121200Down {
-					err := db.Exec(sql).Error
-					if err != nil{
-						return err
-					}
+		},
+		Rollback: func(db *gorm.DB) error {
+			for _, sql := range migrate20210407121200Down {
+				err := db.Exec(sql).Error
+				if err != nil {
+					return err
 				}
-				return nil
-			},
-		}
+			}
+			return nil
+		},
+	}
 }
