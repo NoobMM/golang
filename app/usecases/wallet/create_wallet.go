@@ -2,6 +2,7 @@ package walletusecase
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"github.com/NoobMM/golang/app/constants"
@@ -20,7 +21,7 @@ func (uc *useCase) CreateWalletUseCase(ctx context.Context, input CreateWalletUs
 		return nil, xerrors.ParameterError{
 			Code: constants.StatusCodeMissingRequiredParameters,
 			Message: fmt.Sprintf(constants.ErrorMessageFmtRequired, "name"),
-		}
+		}.Wrap(errors.New("Name is Required"))
 	}
 	newWallet := entities.NewWallet(input.Name)
 	created, err := uc.WalletRepo.CreateOneWallet(ctx, walletrepo.CreateOneWalletInput{
@@ -30,7 +31,7 @@ func (uc *useCase) CreateWalletUseCase(ctx context.Context, input CreateWalletUs
 		return nil, xerrors.InternalError{
 			Code: constants.StatusCodeDatabaseError,
 			Message: constants.ErrorMessageDatabaseError,
-		}
+		}.Wrap(err)
 	}
 	return created, nil
 }
