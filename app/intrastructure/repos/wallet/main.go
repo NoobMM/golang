@@ -10,6 +10,7 @@ import (
 
 type Repo interface {
 	CreateOneWallet(ctx context.Context, input CreateOneWalletInput) (*entities.Wallet, error)
+	FindOneWallet(ctx context.Context, input FindOneWalletInput) (*entities.Wallet, error)
 }
 
 type repo struct {
