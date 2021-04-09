@@ -17,6 +17,7 @@ func ApplyAPIRoutes(r *gin.Engine, httpRoutes *HTTPRoutes) {
 	apiRoute := r.Group("/api")
 	{
 		apiRoute.POST("/wallets", httpRoutes.Wallet.CreateWallet)
+		apiRoute.GET("/wallets/:walletID", httpRoutes.Wallet.FindWallet)
 	}
 }
 
