@@ -10,6 +10,7 @@ import (
 
 type UseCase interface {
 	CreateWalletUseCase(ctx context.Context, input CreateWalletUseCaseInput) (*entities.Wallet, error)
+	FindWalletUseCase(ctx context.Context, input FindWalletUseCaseInput) (*entities.Wallet, error)
 }
 
 type useCase struct {
