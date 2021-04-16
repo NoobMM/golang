@@ -17,8 +17,8 @@ func (repo *repo) UpdateOneWallet(ctx context.Context, input UpdateOneWalletInpu
 	if err != nil {
 		return nil, err
 		}
-	db := repo.DB
-	result := db.Model(&models.Wallet{}).Where("name = ?", walletModel.Name).Where("id = ?", walletModel.ID).Select("balance").Updates(walletModel)
+	query := repo.DB
+	result := query.Model(&models.Wallet{}).Where("id = ?", walletModel.ID).Select("balance").Updates(walletModel)
 	if result.Error != nil {
 		return nil, result.Error
 		}

@@ -21,6 +21,9 @@ func (repo *repo) FindOneWallet(ctx context.Context, input FindOneWalletInput) (
 	if input.ID != nil {
 		query = query.Where(`id = ?`,*input.ID)
 	}
+	if input.Name != nil {
+		query = query.Where(`name = ?`,*input.Name)
+	}
 	result := query.First(&wallet)
 	if result.Error != nil {
 		if errors.Is(result.Error, gorm.ErrRecordNotFound){
