@@ -21,7 +21,7 @@ func (uc *useCase) CreateWalletUseCase(ctx context.Context, input CreateWalletUs
 		return nil, xerrors.ParameterError{
 			Code: constants.StatusCodeMissingRequiredParameters,
 			Message: fmt.Sprintf(constants.ErrorMessageFmtRequired, "name"),
-		}.Wrap(errors.New("Name is Required"))
+		}.Wrap(errors.New("name is required"))
 	}
 	newWallet := entities.NewWallet(input.Name)
 	created, err := uc.WalletRepo.CreateOneWallet(ctx, walletrepo.CreateOneWalletInput{

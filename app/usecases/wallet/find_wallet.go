@@ -21,7 +21,7 @@ func (uc *useCase) FindWalletUseCase(ctx context.Context, input FindWalletUseCas
 		return nil, xerrors.ParameterError{
 			Code: constants.StatusCodeMissingRequiredParameters,
 			Message: fmt.Sprintf(constants.ErrorMessageFmtRequired, "id"),
-		}.Wrap(errors.New("ID is Required"))
+		}.Wrap(errors.New("id is required"))
 	}
 	findWallet, err := uc.WalletRepo.FindOneWallet(ctx, walletrepo.FindOneWalletInput{
 		ID: input.ID,

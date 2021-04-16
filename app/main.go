@@ -5,14 +5,14 @@ import (
 	"log"
 	"os"
 
-	healthcheckhttp "github.com/NoobMM/golang/app/domain/deliveries/http/health_check"
+	healthcheckhttp "github.com/NoobMM/golang/app/presentation/http/health_check"
 	"github.com/NoobMM/golang/app/domain/interfaces/connectors"
-	healthcheckrepo "github.com/NoobMM/golang/app/domain/repos/health_check"
-	healthcheckusecase "github.com/NoobMM/golang/app/domain/usecases/health_check"
+	healthcheckrepo "github.com/NoobMM/golang/app/intrastructure/repos/health_check"
+	healthcheckusecase "github.com/NoobMM/golang/app/usecases/health_check"
 	"github.com/NoobMM/golang/app/environments"
 	walletrepo "github.com/NoobMM/golang/app/intrastructure/repos/wallet"
 	"github.com/NoobMM/golang/app/migration"
-	wallethttp "github.com/NoobMM/golang/app/presentasion/http/wallet"
+	wallethttp "github.com/NoobMM/golang/app/presentation/http/wallet"
 	"github.com/NoobMM/golang/app/routes"
 	walletusecase "github.com/NoobMM/golang/app/usecases/wallet"
 	"github.com/gin-gonic/gin"
@@ -37,8 +37,8 @@ func startApp(_ *cobra.Command, _ []string) {
 	log.Printf("MIGRATE APP...")
 	err := migration.Migrate()
 	if err != nil {
-		log.Printf("migration failed %s",err.Error())
-		return 
+		log.Printf("migration failed %s", err.Error())
+		return
 	}
 	log.Println("migration success")
 

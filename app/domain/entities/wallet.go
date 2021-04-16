@@ -1,6 +1,9 @@
 package entities
 
-import "github.com/AlekSi/pointer"
+import (
+	"github.com/AlekSi/pointer"	
+)
+
 
 type Wallet struct {
 	ID      *string
@@ -13,4 +16,8 @@ func NewWallet(name *string) *Wallet {
 		Name:    name,
 		Balance: pointer.ToInt64(0),
 	}
+}
+func (w *Wallet) SetBalance(balance *int64) *Wallet {
+	w.Balance = balance
+	return w
 }

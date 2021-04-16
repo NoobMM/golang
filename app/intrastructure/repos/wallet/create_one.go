@@ -12,7 +12,7 @@ type CreateOneWalletInput struct {
 }
 
 func (repo *repo) CreateOneWallet(ctx context.Context, input CreateOneWalletInput) (*entities.Wallet, error) {
-	walletModel, err := new(models.Wallet).FormEntity(input.WalletEntity)
+	walletModel, err := new(models.Wallet).FromEntity(input.WalletEntity)
 	if err != nil {
 		return nil, err
 	}

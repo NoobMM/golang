@@ -15,7 +15,7 @@ func (w *Wallet) TableName() string {
 	return "wallets"
 }
 
-func (w *Wallet) FormEntity(e *entities.Wallet) (*Wallet, error) {
+func (w *Wallet) FromEntity(e *entities.Wallet) (*Wallet, error) {
 	var model Wallet
 	err := copier.Copy(&model, &e)
 	if err != nil {

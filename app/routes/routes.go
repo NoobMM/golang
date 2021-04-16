@@ -1,8 +1,8 @@
 package routes
 
 import (
-	healthcheckhttp "github.com/NoobMM/golang/app/domain/deliveries/http/health_check"
-	wallethttp "github.com/NoobMM/golang/app/presentasion/http/wallet"
+	healthcheckhttp "github.com/NoobMM/golang/app/presentation/http/health_check"
+	wallethttp "github.com/NoobMM/golang/app/presentation/http/wallet"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +17,7 @@ func ApplyAPIRoutes(r *gin.Engine, httpRoutes *HTTPRoutes) {
 	apiRoute := r.Group("/api")
 	{
 		apiRoute.POST("/wallets", httpRoutes.Wallet.CreateWallet)
+		apiRoute.POST("/wallets.add-balance", httpRoutes.Wallet.UpdateWallet)
 		apiRoute.GET("/wallets/:walletID", httpRoutes.Wallet.FindWallet)
 	}
 }

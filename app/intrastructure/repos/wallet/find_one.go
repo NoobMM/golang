@@ -12,6 +12,7 @@ import (
 
 type FindOneWalletInput struct {
 	ID *string
+	Name *string
 }
 
 func (repo *repo) FindOneWallet(ctx context.Context, input FindOneWalletInput) (*entities.Wallet, error) {
