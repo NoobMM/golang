@@ -39,7 +39,7 @@ func (uc *useCase) UpdateWalletUseCase(ctx context.Context, input UpdateWalletUs
 			Message: constants.ErrorMessageDatabaseError,
 		}.Wrap(err)
 	}
-	foundWallet = foundWallet.SetBalance(input.Amount)
+	foundWallet = foundWallet.AddBalance(input.Amount)
 	updated, err := uc.WalletRepo.UpdateOneWallet(ctx, walletrepo.UpdateOneWalletInput{
 		WalletEntity: foundWallet,
 	})
