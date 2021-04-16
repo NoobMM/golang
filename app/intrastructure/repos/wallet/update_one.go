@@ -22,9 +22,9 @@ func (repo *repo) UpdateOneWallet(ctx context.Context, input UpdateOneWalletInpu
 	if result.Error != nil {
 		return nil, result.Error
 		}
-	walletEntity, err := walletModel.ToEntity()
+		resultEntity, err := walletModel.ToEntity()
 	if err != nil {
 		return nil, err
 		}
-	return walletEntity, nil
+	return resultEntity, nil
 }
